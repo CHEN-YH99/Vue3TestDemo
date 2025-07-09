@@ -19,9 +19,39 @@ import { createRouter, createWebHashHistory } from 'vue-router'
             component: () => import(/* webpackChunkName: "about" */ '@/views/TaskList.vue')
         },
         {
-            path: '/countNum',
-            name: 'countNum',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/countNum.vue')
+            path: '/ChangeStyle',
+            name: 'ChangeStyle',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/ChangeStyle.vue')
+        },
+        {
+            path: '/LoginPanel',
+            name: 'LoginPanel',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/LoginPanel.vue')
+        },
+        {
+            path: '/FormModel',
+            name: 'FormModel',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/FormModel.vue')
+        },
+        {
+            path: '/Communication',
+            name: 'Communication',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/Communication.vue')
+        },
+        {
+            path: '/SlotDemo',
+            name: 'SlotDemo',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/SlotDemo.vue')
+        },
+        {
+            path: '/LifeHooks',
+            name: 'LifeHooks',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/LifeHooks.vue')
+        },
+        {
+            path: '/WatchDemo',
+            name: 'WatchDemo',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/WatchDemo.vue')
         },
     ]
     const router = createRouter({
