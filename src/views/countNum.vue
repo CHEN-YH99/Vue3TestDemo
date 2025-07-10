@@ -9,16 +9,16 @@
             <span :key="count" class="count-number">{{ count }}</span>
         </transition-group>
         <button :disabled="count >= 10" @click="increment">+</button>
-        <button class="show-code-fab" @click="showCode = true" title="查看代码"></button>
-        <div v-if="showCode" class="code-modal">
-            <div class="code-modal-content">
-                <button class="close-btn" @click="showCode = false">×</button>
-                <button class="copy-btn" @click="copyCode" title="复制代码">复制</button>
-                <transition name="fade">
-                    <div v-if="copySuccess" class="copy-success-tip">复制成功</div>
-                </transition>
-                <pre><code>{{ sourceCode }}</code></pre>
-            </div>
+    </div>
+    <button class="show-code-fab" style="background-color:red ;" @click="showCode = true" title="查看代码"></button>
+    <div v-if="showCode" class="code-modal">
+        <div class="code-modal-content">
+            <button class="close-btn" @click="showCode = false">×</button>
+            <button class="copy-btn" @click="copyCode" title="复制代码">复制</button>
+            <transition name="fade">
+                <div v-if="copySuccess" class="copy-success-tip">复制成功</div>
+            </transition>
+            <pre><code>{{ sourceCode }}</code></pre>
         </div>
     </div>
 </template>
