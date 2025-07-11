@@ -43,100 +43,97 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 9999;
-  }
-  .code-modal .code-modal-content {
-    background: #fff;
-    border-radius: 10px;
-    padding: 24px;
-    min-width: 400px;
-    max-width: 90vw;
-    max-height: 80vh;
-    overflow: auto;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
-    position: relative;
-  }
-  .code-modal .code-modal-content .close-btn {
-    position: absolute;
-    top: 12px;
-    right: 18px;
-    background: transparent;
-    color: #909399;
-    border: none;
-    border-radius: 50%;
-    font-size: 24px;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    z-index: 2;
+    z-index: 1000;
   }
-  .code-modal .code-modal-content .close-btn:hover {
-    background: #f2f6fc;
-    color: #f56c6c;
-  }
-  .code-modal .code-modal-content .copy-btn {
-    position: absolute;
-    top: 16px;
-    right: 60px;
-    background: #409eff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 2px 8px;
-    cursor: pointer;
-    font-size: 11px;
-    min-width: 36px;
-    min-height: 22px;
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    transition: background 0.2s;
-    box-shadow: 0 1px 4px rgba(64, 158, 255, 0.1);
-    z-index: 2;
-  }
-  .code-modal .code-modal-content .copy-btn:hover {
-    background: #66b1ff;
-  }
-  .code-modal .code-modal-content .copy-icon {
-    font-size: 13px;
-    margin-right: 2px;
-  }
-  .code-modal .code-modal-content .copy-text {
-    font-size: 11px;
-    letter-spacing: 0.5px;
-  }
-  .code-modal .code-modal-content .copy-success-tip {
-    position: absolute;
-    top: 0;
-    right: 110px;
-    background: #67c23a;
-    color: #fff;
-    border-radius: 4px;
-    padding: 2px 10px;
-    font-size: 12px;
-    z-index: 10001;
-    box-shadow: 0 1px 4px rgba(103, 194, 58, 0.1);
-    pointer-events: none;
-    opacity: 0.95;
-  }
-  .code-modal .code-modal-content pre {
-    background: #272822;
-    color: #f8f8f2;
-    padding: 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    overflow-x: auto;
-  }
+
+.code-modal-content {
+  position: relative; /* 确保弹窗内容是相对定位 */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.close-btn, .copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.3s ease; /* 统一过渡效果 */
+  z-index: 1; /* 确保按钮在弹窗内容之上 */
+}
+
+.copy-btn {
+  right: 40px; /* 与关闭按钮保持一定距离 */
+}
+
+.close-btn:hover, .copy-btn:hover {
+  color: #000;
+  transform: scale(1.1) rotate(5deg); /* 悬停时放大 + 旋转 */
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* 文字发光效果 */
+}
+
+.close-btn:active, .copy-btn:active {
+  transform: scale(0.9) rotate(-5deg); /* 点击时缩小 + 反向旋转 */
+  color: #ff6b6b; /* 点击时变红色 */
+}
+
+/* 复制按钮的反馈动画 */
+.copy-btn::after {
+  content: "✓";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #4CAF50;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.copy-btn:active::after {
+  opacity: 1; /* 点击时显示对勾反馈 */
+}
+
+.copy-success-tip {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+pre {
+  margin-top: 30px;
+  background-color: #000; /* 黑色背景 */
+  color: #f0f0f0; /* 浅色文字 */
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: monospace; /* 使用等宽字体提升代码可读性 */
+  line-height: 1.5;
+}
   
   .fade-enter-active,
   .fade-leave-active {
