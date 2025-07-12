@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import Index from '@/components/Index.vue'
 // import countNum from '@/views/countNum.vue'
-
+// import { useAuthStore } from '@/stores/authStore';
     const routes = [
         {
             path: '/',
@@ -53,10 +53,26 @@ import { createRouter, createWebHashHistory } from 'vue-router'
             name: 'WatchDemo',
             component: () => import(/* webpackChunkName: "about" */ '@/views/WatchDemo.vue')
         },
+        {
+            path: '/SetupReuse',
+            name: 'SetupReuse',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/SetupReuse.vue')
+        },
+        {
+            path: '/TelePort',
+            name: 'TelePort',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/TelePort.vue')
+        },
+        {
+            path: '/RouterDefend',
+            name: 'RouterDefend',
+            component: () => import(/* webpackChunkName: "about" */ '@/views/RouterDefend.vue')
+        },
     ]
     const router = createRouter({
         history:createWebHashHistory(),
         routes,
-    })
+    });
+
     
     export default router;

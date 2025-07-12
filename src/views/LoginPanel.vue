@@ -5,7 +5,7 @@
       <el-card class="welcome-card">
         <div class="welcome-content">
           <el-avatar :size="60" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
-          <h3>欢迎，{{ loginForm.username }}！</h3>
+          <h3>欢迎，{{ loginForm.username }}!</h3>
           <el-button type="danger" @click="confirmLogout" round>注销</el-button>
         </div>
       </el-card>
@@ -26,14 +26,14 @@
           <el-form-item label="用户名" prop="username">
             <el-input 
               v-model="loginForm.username" 
-              placeholder="请输入用户名（4-16位字母、数字或下划线）" 
+              placeholder="请输入用户名(4-16位字母、数字或下划线)" 
             />
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input 
               v-model="loginForm.password" 
               type="password" 
-              placeholder="请输入密码（8-20位，含大小写字母和数字）" 
+              placeholder="请输入密码(8-20位,含大小写字母和数字)" 
               show-password
             />
           </el-form-item>
@@ -90,7 +90,7 @@ const sourceCode = `<template>
       <el-card class="welcome-card">
         <div class="welcome-content">
           <el-avatar :size="60" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
-          <h3>欢迎，{{ loginForm.username }}！</h3>
+          <h3>欢迎，{{ loginForm.username }}!</h3>
           <el-button type="danger" @click="confirmLogout" round>注销</el-button>
         </div>
       </el-card>
@@ -111,14 +111,14 @@ const sourceCode = `<template>
           <el-form-item label="用户名" prop="username">
             <el-input 
               v-model="loginForm.username" 
-              placeholder="请输入用户名（4-16位字母、数字或下划线）" 
+              placeholder="请输入用户名(4-16位字母、数字或下划线)" 
             />
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input 
               v-model="loginForm.password" 
               type="password" 
-              placeholder="请输入密码（8-20位，含大小写字母和数字）" 
+              placeholder="请输入密码(8-20位,含大小写字母和数字)" 
               show-password
             />
           </el-form-item>
@@ -188,8 +188,8 @@ const rules = {
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
     { 
-      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$/, 
-      message: '密码需为8-20位，包含大小写字母和数字', 
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$/, 
+      message: '密码需为8-20位,包含大小写字母和数字', 
       trigger: 'blur' 
     }
   ]
@@ -272,7 +272,7 @@ const rules = {
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
     { 
-      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$/, 
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$/, 
       message: '密码需为8-20位，包含大小写字母和数字', 
       trigger: 'blur' 
     }
@@ -305,9 +305,7 @@ const confirmLogout = () => {
     ElMessage.info('已取消注销');
   });
 };
-</script>
-
-<style scoped lang="scss">
+</script><style scoped lang="scss">
 .login-panel {
   display: flex;
   justify-content: center;
@@ -334,3 +332,4 @@ const confirmLogout = () => {
   }
 }
 </style>
+

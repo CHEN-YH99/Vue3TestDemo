@@ -22,21 +22,19 @@
               <el-menu-item index="1-8" @click="$router.push('/SlotDemo')">插槽</el-menu-item>
               <el-menu-item index="1-9" @click="$router.push('/LifeHooks')">生命周期钩子</el-menu-item>
               <el-menu-item index="1-10" @click="$router.push('/WatchDemo')">侦听器状态跟踪</el-menu-item>
-              <el-menu-item index="1-11" @click="$router.push('/LoginPanel')">组合式函数复用</el-menu-item>
-              <el-menu-item index="1-12" @click="$router.push('/LoginPanel')">Teleport 传送门</el-menu-item>
+              <el-menu-item index="1-11" @click="$router.push('/SetupReuse')">组合式函数复用</el-menu-item>
+              <el-menu-item index="1-12" @click="$router.push('/TelePort')">Teleport 传送门</el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="">
-              <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-              <template #title>item four</template>
-              <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
           </el-sub-menu>
-          <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <span>路由案例</span>
-          </el-menu-item>
+          <el-sub-menu index="2">
+            <template #title>
+              <el-icon><icon-menu /></el-icon>
+              <span>路由案例</span>
+            </template>
+            <el-menu-item-group title="">
+              <el-menu-item index="2-1" @click="$router.push('/RouterDefend')">路由守卫(鉴权)</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
           <el-menu-item index="3">
             <el-icon><document /></el-icon>
             <span>VueX</span>
