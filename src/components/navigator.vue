@@ -35,14 +35,15 @@
               <el-menu-item index="2-1" @click="$router.push('/RouterDefend')">路由守卫(鉴权)</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
-          <el-menu-item index="3">
-            <el-icon><document /></el-icon>
-            <span>VueX</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <el-icon><setting /></el-icon>
-            <span>Navigator Four</span>
-          </el-menu-item>
+          <el-sub-menu index="3">
+            <template #title>
+              <el-icon><document /></el-icon>
+              <span>VueX</span>
+            </template>
+            <el-menu-item-group title="">
+              <el-menu-item index="3-1" @click="$router.push('/VuexCount')">VueX计数器</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
         </el-menu>
       </el-col>
     </el-row>

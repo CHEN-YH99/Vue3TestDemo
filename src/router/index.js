@@ -1,78 +1,127 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-// import Index from '@/components/Index.vue'
-// import countNum from '@/views/countNum.vue'
-// import { useAuthStore } from '@/stores/authStore';
-    const routes = [
-        {
-            path: '/',
-            name: 'Main',
-            component: () => import(/* webpackChunkName: "home" */ '@/components/Main.vue')
-        },
-        {
-            path: '/countNum',
-            name: 'countNum',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/countNum.vue')
-        },
-        {
-            path: '/TaskList',
-            name: 'TaskList',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/TaskList.vue')
-        },
-        {
-            path: '/ChangeStyle',
-            name: 'ChangeStyle',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/ChangeStyle.vue')
-        },
-        {
-            path: '/LoginPanel',
-            name: 'LoginPanel',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/LoginPanel.vue')
-        },
-        {
-            path: '/FormModel',
-            name: 'FormModel',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/FormModel.vue')
-        },
-        {
-            path: '/Communication',
-            name: 'Communication',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/Communication.vue')
-        },
-        {
-            path: '/SlotDemo',
-            name: 'SlotDemo',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/SlotDemo.vue')
-        },
-        {
-            path: '/LifeHooks',
-            name: 'LifeHooks',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/LifeHooks.vue')
-        },
-        {
-            path: '/WatchDemo',
-            name: 'WatchDemo',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/WatchDemo.vue')
-        },
-        {
-            path: '/SetupReuse',
-            name: 'SetupReuse',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/SetupReuse.vue')
-        },
-        {
-            path: '/TelePort',
-            name: 'TelePort',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/TelePort.vue')
-        },
-        {
-            path: '/RouterDefend',
-            name: 'RouterDefend',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/RouterDefend.vue')
-        },
-    ]
-    const router = createRouter({
-        history:createWebHashHistory(),
-        routes,
-    });
+import { createRouter, createWebHashHistory } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
+import { ElMessage } from 'element-plus';
 
-    
-    export default router;
+const routes = [
+  {
+    path: '/',
+    name: 'Main',
+    component: () => import('@/components/Main.vue'),
+    // meta: { requiresAuth: true } // 需要登录
+  },
+  {
+    path: '/countNum',
+    name: 'countNum',
+    component: () => import('@/views/countNum.vue') // 允许未登录访问
+  },
+  {
+    path: '/TaskList',
+    name: 'TaskList',
+    component: () => import('@/views/TaskList.vue') // 允许未登录访问
+  },
+  {
+    path: '/ChangeStyle',
+    name: 'ChangeStyle',
+    component: () => import('@/views/ChangeStyle.vue') // 允许未登录访问
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login.vue'),
+    meta: { guestOnly: true } // 仅未登录可访问
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/views/Register.vue'),
+    meta: { guestOnly: true } // 仅未登录可访问
+  },
+  // 其他需要登录的路由
+  {
+    path: '/FormModel',
+    name: 'FormModel',
+    component: () => import('@/views/FormModel.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/Communication',
+    name: 'Communication',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Communication.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/SlotDemo',
+    name: 'SlotDemo',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/SlotDemo.vue'),
+    meta: { requiresAuth: true }
+},
+  {
+    path: '/LifeHooks',
+    name: 'LifeHooks',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/LifeHooks.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/WatchDemo',
+    name: 'WatchDemo',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/WatchDemo.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/SetupReuse',
+    name: 'SetupReuse',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/SetupReuse.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/TelePort',
+    name: 'TelePort',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/TelePort.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/RouterDefend',
+    name: 'RouterDefend',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/RouterDefend.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/LoginPanel',
+    name: 'LoginPanel',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/LoginPanel.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/vuexCount',
+    name: 'VuexCount',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/VuexCount.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
+  }
+];
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
+
+router.beforeEach(async (to) => {
+  const authStore = useAuthStore();
+  await authStore.initialize(); // 确保用户状态初始化
+
+  // 未登录用户尝试访问需登录的路由 → 弹出提示并跳转到登录页
+  if (to.meta.requiresAuth && !authStore.isLoggedIn) {
+    ElMessage.warning('请先登录！');
+    return '/login';
+  }
+
+  // 已登录用户尝试访问仅限未登录的路由（如登录页）→ 跳转到首页
+  if (to.meta.guestOnly && authStore.isLoggedIn) {
+    return '/';
+  }
+});
+
+export default router;

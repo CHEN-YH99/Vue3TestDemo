@@ -29,11 +29,11 @@ import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
 </script>
 
 <style scoped lang="scss">
-  .e-header{
-    background-color: #545c64;
-    color: #fff;
-    text-align: center;
-  }
+  // .e-header{
+  //   background-color: #545c64;
+  //   color: #fff;
+  //   text-align: center;
+  // }
   .lottie-fixed {
     position: absolute;
     right: 20px;

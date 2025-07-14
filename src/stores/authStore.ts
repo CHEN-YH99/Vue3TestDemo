@@ -1,92 +1,71 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { ElMessage } from 'element-plus';
 
-interface User {
-  username: string;
-  email: string;
-  role: 'user' | 'admin';
-  token: string;
-  expiresAt: number;
-}
-
-// 导出一个名为 useAuthStore 的函数，用于定义一个名为 auth 的 store
 export const useAuthStore = defineStore('auth', () => {
-  // 定义一个名为 user 的 ref，用于存储用户信息，初始值为 null
-  const user = ref<User | null>(null);
-  // 定义一个名为 isLoggedIn 的 computed，用于判断用户是否已登录，初始值为 false
+  const user = ref<{ username: string; role?: string; avatar?: string } | null>(null);
+
+  // 确保 isLoggedIn 是计算属性
   const isLoggedIn = computed(() => !!user.value);
 
-  // 初始化时从 localStorage 恢复用户状态
-  const initAuth = () => {
-    // 从 localStorage 获取用户信息
-    const savedUser = localStorage.getItem('user');
-    // 如果 localStorage 中有用户信息
-    if (savedUser) {
-      // 将用户信息解析为 User 类型
-      const parsedUser = JSON.parse(savedUser) as User;
-      // 如果用户信息中的过期时间大于当前时间
-      if (parsedUser.expiresAt > Date.now()) {
-        // 将用户信息赋值给 user
-        user.value = parsedUser;
-      } else {
-        // 否则，从 localStorage 中移除用户信息
-        localStorage.removeItem('user');
-      }
-    }
-  };
-
-  // 登录逻辑
+  // 登录方法
   const login = async (username: string, password: string) => {
-    try {
-      // 模拟 API 调用
-      const response = await new Promise<{ data: User }>((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: {
-              username,
-              email: `${username}@example.com`,
-              role: username === 'admin' ? 'admin' : 'user',
-              token: 'fake-jwt-token',
-              expiresAt: Date.now() + 3600 * 1000, // 1 小时后过期
-            },
-          });
-        }, 1000);
-      });
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const userData = users.find((u: any) => u.username === username);
+        if (!userData) {
+          resolve({ success: false, message: '用户名未注册' });
+          return;
+        }
+        if (userData.password !== password) {
+          resolve({ success: false, message: '密码错误' });
+          return;
+        }
+        // 登录成功时，设置用户信息和默认头像
+        user.value = { 
+          username, 
+          role: 'user',
+          avatar: '/images/user.png' // 默认头像路径
+        };
+        resolve({ success: true, message: '登录成功' });
+      }, 1000);
+    });
+  };
 
-      // 将用户信息赋值给 user
-      user.value = response.data;
-      // 将用户信息存储到 localStorage 中
-      localStorage.setItem('user', JSON.stringify(response.data));
-      // 显示登录成功的消息
-      ElMessage.success('登录成功');
-    } catch (error) {
-      // 显示登录失败的消息
-      ElMessage.error('登录失败');
-      // 抛出错误
-      throw error;
+   // 注册方法
+  const register = async (username: string, password: string) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        if (users.some((u: any) => u.username === username)) {
+          resolve({ success: false, message: '用户名已存在' });
+          return;
+        }
+
+        users.push({ username, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        resolve({ success: true, message: '注册成功' });
+      }, 1000);
+    });
+  };
+
+  // 可选：初始化方法（如果路由守卫需要）
+  const initialize = async () => {
+    // 例如：检查本地存储的 token
+    const token = localStorage.getItem('token');
+    if (token) {
+      user.value = { username: 'admin' }; // 模拟用户数据
     }
+    return !!token;
   };
 
-  // 退出逻辑
+  // 登出方法
   const logout = () => {
-    // 将 user 赋值为 null
     user.value = null;
-    // 从 localStorage 中移除用户信息
-    localStorage.removeItem('user');
-    // 显示已退出登录的消息
-    ElMessage.success('已退出登录');
+    localStorage.removeItem('token'); // 如果有 token
+    localStorage.removeItem('lastRegisteredUsername'); // 可选：清除自动填充的用户名
+    return true; // 返回退出成功状态
   };
 
-  // 检查权限
-  const hasRole = (role: User['role']) => {
-    // 返回用户是否具有指定角色的计算属性
-    return computed(() => user.value?.role === role).value;
-  };
-
-  // 初始化
-  initAuth();
-
-  // 返回 user、isLoggedIn、login、logout、hasRole
-  return { user, isLoggedIn, login, logout, hasRole };
+  return { user, login, register, initialize, logout, isLoggedIn };
 });
