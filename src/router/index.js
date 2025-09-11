@@ -98,6 +98,12 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/changecolor',
+    name: 'ChangeColor',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/changeColor.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }
