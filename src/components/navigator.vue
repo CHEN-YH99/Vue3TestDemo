@@ -24,6 +24,9 @@
               <el-menu-item index="1-10" @click="$router.push('/WatchDemo')">侦听器状态跟踪</el-menu-item>
               <el-menu-item index="1-11" @click="$router.push('/SetupReuse')">组合式函数复用</el-menu-item>
               <el-menu-item index="1-12" @click="$router.push('/TelePort')">Teleport 传送门</el-menu-item>
+              <el-menu-item index="1-13" @click="$router.push('/arrayhandle')">修改原数组方法</el-menu-item>
+              <el-menu-item index="1-14" @click="$router.push('/arrayoperations')">不修改原数组方法</el-menu-item>
+
             </el-menu-item-group>
           </el-sub-menu>
           <el-sub-menu index="2">

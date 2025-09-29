@@ -27,6 +27,16 @@ export const useAuthStore = defineStore('auth', () => {
           role: 'user',
           avatar: '/images/user.png' // 默认头像路径
         };
+        // 保存3天的登录状态
+        const expirationDate = new Date();
+        // console.log(expirationDate);
+        expirationDate.setDate(expirationDate.getDate() + 3); // 3天后过期
+        const authData = {
+          user: user.value,
+          expiresAt: expirationDate.getTime()
+        };
+        
+        localStorage.setItem('authData', JSON.stringify(authData));
         resolve({ success: true, message: '登录成功' });
       }, 1000);
     });
@@ -49,20 +59,34 @@ export const useAuthStore = defineStore('auth', () => {
     });
   };
 
-  // 可选：初始化方法（如果路由守卫需要）
   const initialize = async () => {
-    // 例如：检查本地存储的 token
-    const token = localStorage.getItem('token');
-    if (token) {
-      user.value = { username: 'admin' }; // 模拟用户数据
+    const authDataStr = localStorage.getItem('authData');
+    if (authDataStr) {
+      try {
+        const authData = JSON.parse(authDataStr);
+        const now = new Date().getTime();
+        
+        // 检查是否过期
+        if (authData.expiresAt > now) {
+          // 未过期，恢复用户状态
+          user.value = authData.user;
+          return true;
+        } else {
+          // 已过期，清除存储的数据
+          localStorage.removeItem('authData');
+        }
+      } catch (e) {
+        console.error('解析登录信息失败', e);
+        localStorage.removeItem('authData');
+      }
     }
-    return !!token;
+    return false;
   };
 
   // 登出方法
   const logout = () => {
     user.value = null;
-    localStorage.removeItem('token'); // 如果有 token
+    localStorage.removeItem('authData'); // 清除登录状态
     localStorage.removeItem('lastRegisteredUsername'); // 可选：清除自动填充的用户名
     return true; // 返回退出成功状态
   };

@@ -104,6 +104,18 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/arrayhandle',
+    name: 'ArrayHandle',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/修改数组处理方法.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/arrayoperations',
+    name: 'ArrayOperations',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/不修改数组方法.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }
