@@ -116,6 +116,21 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/test',
+    name: 'Test',
+    component: () => import('@/views/测试文件.vue'),
+  },
+  {
+    path: '/lifecycle',
+    name: 'Lifecycle',
+    component: () => import('@/views/生命周期示例.vue'),
+  },
+  {
+    path: '/nexttick',
+    name: 'NextTick',
+    component: () => import('@/views/nextTick示例.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }

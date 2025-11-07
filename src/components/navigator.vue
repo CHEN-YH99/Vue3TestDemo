@@ -26,6 +26,9 @@
               <el-menu-item index="1-12" @click="$router.push('/TelePort')">Teleport 传送门</el-menu-item>
               <el-menu-item index="1-13" @click="$router.push('/arrayhandle')">修改原数组方法</el-menu-item>
               <el-menu-item index="1-14" @click="$router.push('/arrayoperations')">不修改原数组方法</el-menu-item>
+              <el-menu-item index="1-15" @click="$router.push('/test')">测试文件</el-menu-item>
+              <el-menu-item index="1-16" @click="$router.push('/lifecycle')">生命周期示例</el-menu-item>
+              <el-menu-item index="1-17" @click="$router.push('/nexttick')">nextTick示例</el-menu-item>
 
             </el-menu-item-group>
           </el-sub-menu>
