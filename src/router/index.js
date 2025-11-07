@@ -119,20 +119,24 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: () => import('@/views/测试文件.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/lifecycle',
     name: 'Lifecycle',
     component: () => import('@/views/生命周期示例.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/nexttick',
     name: 'NextTick',
     component: () => import('@/views/nextTick示例.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/'
+    name: 'NotFound',
+    component: () => import('@/components/404.vue')
   }
 ];
 
